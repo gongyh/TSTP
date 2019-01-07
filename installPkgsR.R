@@ -12,7 +12,8 @@ instpkg <- function(pkg,repo){
 
 
 # CRAN R packages
-CRANpkgs <- c("shiny", "shinyBS", "shinydashboard", "shinycssloaders", "shinyjs", 
-              "DT", "formattable", "data.table", "devtools", "dtwclust", "doParallel",  
-              "ggplot2", "reshape2","dplyr","OmicsPLS")
+CRANpkgs <- c("shiny", "shinyBS", "shinydashboard", "shinycssloaders", "shinyjs",
+              "DT", "formattable", "data.table", "devtools", "dtwclust", "doParallel",
+              "ggplot2", "reshape2","dplyr")
+
 instpkg(CRANpkgs, "CRAN")
