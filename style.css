@@ -1,0 +1,96 @@
+/* Hide some sidebar items when the sidebar gets collapsed (with sidebar-mini) */
+body.sidebar-collapse .hide_when_sidebar_collapsed {
+    display: none;
+}
+
+.runbutton {
+  background-color: #0059b3;
+  text-decoration: none;
+  text-transform: initial;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 16px;
+  padding: 2px;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  line-height: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  text-decoration: none;
+  text-transform: initial;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+.runbutton:hover {
+  color: white;
+  box-shadow: 0 0 30px 0 rgba(89, 0, 179, 0.5);
+  background-color: #009933;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+.runbutton:hover:before {
+  -webkit-animation: shine 0.5s 0s linear;
+  -moz-animation: shine 0.5s 0s linear;
+  animation: shine 0.5s 0s linear;
+}
+.runbutton:active {
+  background-color: #009933;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: box-shadow 0.2s ease-in;
+  -moz-transition: box-shadow 0.2s ease-in;
+  transition: box-shadow 0.2s ease-in;
+}
+.runbutton:before {
+  content: '';
+  display: block;
+  width: 0px;
+  height: 86%;
+  position: absolute;
+  top: 7%;
+  left: 0%;
+  opacity: 0;
+  background-color: #009933;
+  background: white;
+  box-shadow: 0 0 15px 3px white;
+  -webkit-transform: skewX(-20deg);
+  -moz-transform: skewX(-20deg);
+  -ms-transform: skewX(-20deg);
+  -o-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+}
+.runbutton:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/*
+button#calcKshape {
+  margin-top: 24px;
+}
+*/
+
+button#drawKshape {
+  margin-top: 24px;
+}
+
+button#stats {
+  margin-top: 24px;
+}
+
+div[data-for-btn=calcKshape] {
+  margin-top: 24px;
+}
+
+div[data-for-btn=crossval] {
+  margin-top: 24px;
+}
