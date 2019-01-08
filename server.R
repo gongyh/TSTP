@@ -97,12 +97,14 @@ server <- function(input, output, session) {
   
   output$dt1 <- DT::renderDataTable({
     req(transMatrix$val)
-    DT::datatable(transMatrix$val, escape=FALSE, selection='single', options = list(searchHighlight = TRUE, scrollX = TRUE))
+    DT::datatable(transMatrix$val, escape=FALSE, selection='single', options = list(searchHighlight = TRUE, scrollX = TRUE)) %>%
+      formatRound(colnames(transMatrix$val), 3)
   })
   
   output$dt2 <- DT::renderDataTable({
     req(protMatrix$val)
-    DT::datatable(protMatrix$val, escape=FALSE, selection='single', options = list(searchHighlight = TRUE, scrollX = TRUE))
+    DT::datatable(protMatrix$val, escape=FALSE, selection='single', options = list(searchHighlight = TRUE, scrollX = TRUE)) %>%
+      formatRound(colnames(protMatrix$val), 3)
   })
   
   #####################################################################################
@@ -191,7 +193,7 @@ server <- function(input, output, session) {
               hr(),
               fluidRow(
                 shinyjs::useShinyjs(),
-                column(style="border-right: 1px lightgray solid;", 6,
+                column(style="border-right: 1px lightgray solid;", 12,
                   fluidRow(
                     column(4, textInput("show_clusters","Clusters to display",value = "1:64")),
                     column(4, selectInput("show_type","Display type",
@@ -200,13 +202,18 @@ server <- function(input, output, session) {
                     column(4, actionButton("drawKshape", "Draw Clusters",class="btn-primary",disabled="disabled"))
                   ),
                   fluidRow(
-                    column(12, plotOutput("clusters", height = "800px") %>% withSpinner(type = 5, color="#bf00ff", size = 1))
+                    column(12, plotOutput("clusters", height = "1024px") %>% withSpinner(type = 5, color="#bf00ff", size = 1))
                   )
-                ),
-                column(6,
-                  fluidRow(column(4, actionButton("stats", "Details",class="btn-primary",disabled="disabled"),offset=4)),
-                  fluidRow(column(12,br(),DT::dataTableOutput("stats_table") %>% withSpinner(type = 1, color="#bf00ff", size = 1))),
-                  fluidRow(column(12,br(),plotOutput("selected_clusters", height = "400px") %>% withSpinner(type = 7, color="#bf00ff", size = 1)))
+                )
+              ),
+              hr(),
+              fluidRow(
+                shinyjs::useShinyjs(),
+                column(style="border-right: 1px lightgray solid;", 12,
+                       fluidRow(column(3, actionButton("stats", "See Details",class="btn-primary",disabled="disabled"), offset=1),
+                                column(3, downloadButton("dl", "Export to CSV",class="btn-primary",disabled="disabled"), offset=1)),
+                       fluidRow(column(12,br(),DT::dataTableOutput("stats_table") %>% withSpinner(type = 1, color="#bf00ff", size = 1))),
+                       fluidRow(column(12,br(),plotOutput("selected_clusters", height = "800px") %>% withSpinner(type = 7, color="#bf00ff", size = 1)))
                 )
               ),
               id = "kshapebox", title = "ShinyOmics results: kshape", status = "success", solidHeader = FALSE,
@@ -223,11 +230,13 @@ server <- function(input, output, session) {
     if(input$calcKshape>0 && ("kshape" %in% isolate(listSteps))) {
       shinyjs::disable("drawKshape")
       shinyjs::disable("stats")
+      shinyjs::disable("dl")
       withBusyIndicatorServer("calcKshape", {
         source("scripts/step-kshape.R", local=TRUE)
       })
       shinyjs::enable("drawKshape")
       shinyjs::enable("stats")
+      shinyjs::enable("dl")
     }
   })
   
@@ -249,10 +258,22 @@ server <- function(input, output, session) {
     }
   })
   
+  
+  # Download results to csv file
+  output$dl <- downloadHandler(
+    filename = function() {
+      paste(format(Sys.time(), "%Y%m%d%H%M%S"), ".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(statsResult$val, file, row.names = FALSE)
+    }
+  )
+  
   #show stats table
   output$stats_table <- DT::renderDataTable({
     req(statsResult$val)
-    DT::datatable(statsResult$val, escape=FALSE, selection = 'single', options = list(searchHighlight = TRUE, scrollX = TRUE))
+    DT::datatable(statsResult$val, escape=FALSE, selection = 'single', options = list(searchHighlight = TRUE, scrollX = TRUE)) %>%
+      formatRound(columns=c('dist'), digits=4)
   })
   
   # show selected clusters and gene

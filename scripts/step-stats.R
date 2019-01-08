@@ -18,6 +18,7 @@ if(!is.null(kshapeResult$val)) {
   results_same <- c()
   results_tcls <- c()
   results_pcls <- c()
+  results_dists <- c()
   for(pid in protein_ids) {
     name_tmp <- substr(pid,start=6,stop=nchar(pid))
     tid = paste("trans", name_tmp, sep="-")
@@ -31,11 +32,13 @@ if(!is.null(kshapeResult$val)) {
       results_same <- c(results_same,same_tmp)
       results_tcls <- c(results_tcls,klist[[1]]@cluster[tid_index])
       results_pcls <- c(results_pcls,klist[[1]]@cluster[pid_index])
+      dist <- SBD(as.numeric(ctransMatrix$val[tid,]),as.numeric(cprotMatrix$val[pid,]),znorm=T)$dist
+      results_dists <- c(results_dists,dist)
     }
   }
   
   tmp <- data.frame(id=results_names,same=results_same,
-                                trans_cluster=results_tcls,prot_cluster=results_pcls)
+                    trans_cluster=results_tcls,prot_cluster=results_pcls,dist=results_dists)
   
   ### annotation **************************
   if(!is.null(annotationTb$val)) {

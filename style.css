@@ -87,6 +87,11 @@ button#stats {
   margin-top: 24px;
 }
 
+a#dl {
+  margin-top: 24px;
+}
+
+
 div[data-for-btn=calcKshape] {
   margin-top: 24px;
 }
