@@ -21,7 +21,7 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
     rm -f version.txt ss-latest.deb
 
 # Install R packages that are required
-RUN R -e "install.packages(c('shiny','shinyBS','shinydashboard','shinycssloaders','shinyjs','DT','formattable','data.table','devtools','dtwclust','doParallel','ggplot2','reshape2','dplyr'), repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('shiny','shinyBS','shinydashboard','shinycssloaders','shinyjs','DT','formattable','data.table','devtools','dtwclust','doParallel','ggplot2','reshape2','dplyr'), repos='https://mirrors.tuna.tsinghua.edu.cn/CRAN/')"
 
 # Copy configuration files into the Docker image
 COPY shiny-server.conf  /etc/shiny-server/shiny-server.conf
