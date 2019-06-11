@@ -4,5 +4,5 @@
 
 [![Docker](https://img.shields.io/docker/cloud/build/gongyh/tstp.svg)](https://hub.docker.com/r/gongyh/tstp)
 
-##Author:
-[Yanhai Gong](gongyh@qibebt.ac.cn)
+## Author:
+[Yanhai Gong](mailto:gongyh@qibebt.ac.cn)
