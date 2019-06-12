@@ -10,6 +10,7 @@ text-align: justify}
 </style>
 
 ### Questions
-[Source Code](https://github.com/gongyh/TSTP) [TestData](https://github.com/gongyh/TSTP/sampleData)
+[Source Code](https://github.com/gongyh/TSTP){:target="_blank"}
+[Sample Data](https://github.com/gongyh/TSTP/tree/master/app/sampleData){:target="_blank"}
 
 For any issues or questions that might arise, please email <strong>gongyh@qibebt.ac.cn</strong>.
