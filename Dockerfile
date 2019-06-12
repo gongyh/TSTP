@@ -39,7 +39,7 @@ RUN chown -R shiny:shiny /srv/shiny-server
 RUN chown -R shiny:shiny /var/lib/shiny-server
 
 # Log to local volume
-VOLUME /srv/shiny-server/www
+#VOLUME /srv/shiny-server/www
 
 CMD ["/usr/bin/shiny-server.sh"]
 
