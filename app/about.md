@@ -9,8 +9,7 @@ body {
 text-align: justify}
 </style>
 
-### Questions
-[Source Code](https://github.com/gongyh/TSTP){:target="_blank"}
-[Sample Data](https://github.com/gongyh/TSTP/tree/master/app/sampleData){:target="_blank"}
+### Remarks
+[Source Code](https://github.com/gongyh/TSTP) & [Sample Data](https://github.com/gongyh/TSTP/tree/master/app/sampleData)
 
 For any issues or questions that might arise, please email <strong>gongyh@qibebt.ac.cn</strong>.
